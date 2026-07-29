@@ -1,1 +1,0 @@
-/usr/bin/gcc -g CMakeFiles/bandbox.dir/src/main.c.o CMakeFiles/bandbox.dir/src/namespace.c.o -o bandbox 

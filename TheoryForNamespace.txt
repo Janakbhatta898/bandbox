@@ -1,0 +1,15 @@
+========================================================================
+LINUX NAMESPACES OVERVIEW
+========================================================================
+
+Namespace    | Isolates                      | Flag
+------------------------------------------------------------------------
+PID          | Process IDs                   | CLONE_NEWPID
+Mount        | Filesystem mount points       | CLONE_NEWNS
+UTS          | Hostname, domain name         | CLONE_NEWUTS
+IPC          | System V IPC, message queues  | CLONE_NEWIPC
+Network      | Network interfaces, routing   | CLONE_NEWNET
+User         | UID/GID mappings              | CLONE_NEWUSER
+Cgroup       | Cgroup root directory view    | CLONE_NEWCGROUP
+
+========================================================================
