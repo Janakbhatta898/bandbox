@@ -129,6 +129,30 @@ bandbox/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/bandbox.dir/build.make CMakeFiles/bandbox.dir/build
 .PHONY : bandbox/fast
 
+src/cgroups.o: src/cgroups.c.o
+.PHONY : src/cgroups.o
+
+# target to build an object file
+src/cgroups.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bandbox.dir/build.make CMakeFiles/bandbox.dir/src/cgroups.c.o
+.PHONY : src/cgroups.c.o
+
+src/cgroups.i: src/cgroups.c.i
+.PHONY : src/cgroups.i
+
+# target to preprocess a source file
+src/cgroups.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bandbox.dir/build.make CMakeFiles/bandbox.dir/src/cgroups.c.i
+.PHONY : src/cgroups.c.i
+
+src/cgroups.s: src/cgroups.c.s
+.PHONY : src/cgroups.s
+
+# target to generate assembly for a file
+src/cgroups.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/bandbox.dir/build.make CMakeFiles/bandbox.dir/src/cgroups.c.s
+.PHONY : src/cgroups.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... bandbox"
+	@echo "... src/cgroups.o"
+	@echo "... src/cgroups.i"
+	@echo "... src/cgroups.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

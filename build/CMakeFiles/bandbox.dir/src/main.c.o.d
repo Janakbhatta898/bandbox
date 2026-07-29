@@ -24,4 +24,5 @@ CMakeFiles/bandbox.dir/src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /home/janak/Desktop/projects/bandbox/include/namespaces.h
+ /home/janak/Desktop/projects/bandbox/include/namespaces.h \
+ /home/janak/Desktop/projects/bandbox/include/cgroups.h
