@@ -13,3 +13,132 @@ User         | UID/GID mappings              | CLONE_NEWUSER
 Cgroup       | Cgroup root directory view    | CLONE_NEWCGROUP
 
 ========================================================================
+
+	1. clone(): it is the system call similar to fork() but allow fine tuning of the child. this is through we will isolate child process ok
+
+Function Prototype:
+int clone(
+    int (*fn)(void *),
+    void *stack,
+    int flags,
+    void *arg,
+    ...
+);
+
+Parameters
+1. fn
+int (*fn)(void *)
+
+A pointer to the function executed by the child process after it is created.
+
+2. stack
+void *stack
+
+A pointer to the child process's stack memory.
+
+Since the child executes independently, it must have its own stack.
+
+3. flags
+int flags
+
+Specifies:
+
+Which resources should be shared.
+Which namespaces should be created.
+Which signal should be sent when the child terminates.
+
+Example:
+
+CLONE_NEWUSER |
+CLONE_NEWNET |
+CLONE_NEWUTS |
+SIGCHLD
+
+4. arg
+void *arg
+
+A pointer passed directly to the child function (fn).
+
+How clone() Works
+Parent Process
+       │
+       │ clone(CLONE_NEWUSER | CLONE_NEWNET)
+       ▼
++-------------------------+
+| Child Process           |
+|-------------------------|
+| User Namespace (new)    |
+| Network Namespace (new) |
++-------------------------+
+
+The parent continues executing normally, while the child executes inside the newly created namespaces.
+
+unshare() System Call
+Purpose
+
+	2. unshare() creates new namespaces for the current process without creating a new child process.
+
+Instead of creating another process, the current process leaves its existing shared namespace and begins using newly created namespaces.
+
+Function Prototype
+int unshare(int flags);
+Parameter
+flags
+
+Specifies which namespaces should be detached from the current process.
+
+Example:
+
+unshare(CLONE_NEWUTS);
+
+After this call, only the current process receives a new UTS namespace.
+
+How unshare() Works
+
+Before:
+
+Host Namespace
+      │
+      └── Current Process
+
+After:
+
+Host Namespace
+
+Current Process
+      │
+      └── New UTS Namespace
+
+No new process is created. Only the namespace association of the current process changes.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+header files:
+Header File	Purpose
+"namespaces.h"	Includes the public interface of the namespace module, including function declarations and project-specific macros.
+
+<sched.h>	Provides the clone() system call and namespace flags (CLONE_NEWPID, CLONE_NEWNS, CLONE_NEWUTS, CLONE_NEWIPC, etc.).
+
+<stdlib.h>	Provides memory management functions such as malloc() and free() for allocating and releasing the child process stack.
+
+<sys/wait.h>	Provides process synchronization functions such as wait() and waitpid() to wait for the child process and retrieve its exit status.
+
+<stdio.h>	Provides standard input/output and error-reporting functions such as printf() and perror().
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+functions:
+
+1.start_sandbox()
+Purpose
+
+start_sandbox() is the entry point for creating and starting a sandboxed process. It is responsible for setting up the Linux namespaces required for process isolation and launching a child process inside the sandbox.
+
+Parameters
+child_func – A pointer to the function that will be executed by the child process after the sandbox is created.
+
+arg – A generic pointer passed as an argument to child_func, allowing arbitrary data to be supplied to the sandboxed process.
+
+Return Value
+
+Returns 0 on successful sandbox creation and execution, or -1 if an error occurs during sandbox initialization.
