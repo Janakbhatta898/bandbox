@@ -24,6 +24,7 @@ void max_pids(){
         return;
     }
     fprintf(fp,"9\n");
+    printf("pid.max is edited to set limit");
     fclose(fp);
     return;
 }
