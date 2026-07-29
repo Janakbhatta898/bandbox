@@ -1,0 +1,3 @@
+/home/janak/Desktop/projects/bandbox/build/CMakeFiles/bandbox.dir
+/home/janak/Desktop/projects/bandbox/build/CMakeFiles/edit_cache.dir
+/home/janak/Desktop/projects/bandbox/build/CMakeFiles/rebuild_cache.dir

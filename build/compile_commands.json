@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/janak/Desktop/projects/bandbox/build",
+  "command": "/usr/bin/gcc  -I/home/janak/Desktop/projects/bandbox/include -g -std=gnu11 -o CMakeFiles/bandbox.dir/src/main.c.o -c /home/janak/Desktop/projects/bandbox/src/main.c",
+  "file": "/home/janak/Desktop/projects/bandbox/src/main.c",
+  "output": "CMakeFiles/bandbox.dir/src/main.c.o"
+},
+{
+  "directory": "/home/janak/Desktop/projects/bandbox/build",
+  "command": "/usr/bin/gcc  -I/home/janak/Desktop/projects/bandbox/include -g -std=gnu11 -o CMakeFiles/bandbox.dir/src/namespace.c.o -c /home/janak/Desktop/projects/bandbox/src/namespace.c",
+  "file": "/home/janak/Desktop/projects/bandbox/src/namespace.c",
+  "output": "CMakeFiles/bandbox.dir/src/namespace.c.o"
+}
+]
