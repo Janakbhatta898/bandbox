@@ -1,7 +1,6 @@
 # bandbox
 
-A lightweight Linux sandbox built from scratch in C, using kernel namespaces
-for process isolation. Educational project — work in progress.
+A lightweight Linux sandbox built from scratch in C.
 
 ## Prerequisites
 
@@ -22,7 +21,7 @@ sudo apt install build-essential cmake
 Clone the repo, then build with CMake:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Janakbhatta898/bandbox
 cd bandbox
 mkdir build && cd build
 cmake ..
