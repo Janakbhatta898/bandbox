@@ -180,4 +180,93 @@ might output:
 
 DHIRAJSHRESTHA
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Mount Namespace
+
+A mount namespace isolates a process's view of the filesystem by providing it with an independent mount table. Processes in different mount namespaces can mount or unmount filesystems without affecting each other. When a new mount namespace is created using CLONE_NEWNS, the child initially receives a copy of the parent's mount table, allowing it to modify its own filesystem view independently while the underlying files remain the same. This isolation is a fundamental feature used by containers to create separate filesystem environments.
+
+Example: Suppose a sandbox mounts a tmpfs filesystem on /tmp. With a separate mount namespace, only processes inside the sandbox see the new /tmp mount, while the host system and other namespaces continue using their original /tmp. This allows the sandbox to safely customize its filesystem layout without affecting the host.
+
+Many beginners confuse these two concepts:
+
+Mount Namespace
+
+Changes how the filesystem is viewed.
+
+chroot() / pivot_root()
+
+Changes what directory becomes the root (/).
+
+-  A PID namespace isolates process IDs, but /proc must be remounted inside the new mount namespace so that procfs presents information for the new PID namespace instead of the inherited one.
+
+-  umount() detaches the currently mounted filesystem from a mount point. In Bandbox, it is used to remove the inherited /proc so that a new procfs can be mounted inside the sandbox's mount namespace.
+
+-  The mount() system call attaches a filesystem to a directory (mount point). In Bandbox, it is used to mount a new proc filesystem at /proc inside the sandbox's private mount namespace, ensuring process-related tools access information from the sandbox's PID namespace rather than the host's.
+
+mount() System Call
+
+Prototype:
+
+int mount(const char *source,
+          const char *target,
+          const char *filesystemtype,
+          unsigned long mountflags,
+          const void *data);
+
+
+
+-  Mount propagation controls whether mount and unmount events are shared between mount namespaces. Before modifying the filesystem inside Bandbox, the mount namespace is made private to ensure that mount operations remain isolated and do not propagate back to the host system.
+
+-  MS_PRIVATE
+
+Means:
+
+Make this mount private.
+
+After this:
+
+Mounts do not propagate out.
+Unmounts do not propagate out.
+Host mount changes do not automatically appear here.
+
+Isolation achieved.
+
+MS_REC
+
+Means:
+
+Apply the operation recursively.
+
+Without it:
+
+/
+
+becomes private,
+
+but
+
+/proc
+/sys
+/dev
+
+might still retain their old propagation settings.
+
+That would be inconsistent.
+
+With MS_REC:
+
+/
+├── proc
+├── sys
+├── dev
+├── tmp
+└── home
+
+Every existing mount under / is updated.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
