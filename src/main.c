@@ -8,6 +8,7 @@
 
 int child_func(void *arg){
 	printf("We are inside sandbox child process\n");
+
 	
 	const char *hostname = "bandbox";
 
@@ -70,6 +71,9 @@ int main(int argc, char *argv[]){
 		printf("Usage: %s <program> [arguments...]\n", argv[0]);
 		return 1;
 	}
+	setup_cgroups();
+
+
 
 	if(start_bandbox(child_func, argv) == -1){
 		printf("failed to create a bandbox\n");

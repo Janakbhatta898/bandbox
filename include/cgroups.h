@@ -1,7 +1,9 @@
 #ifndef CGROUPS_H
 #define CGROUPS_H
+#include<sys/types.h>
 
 
-void setup_cgroups(void);
+int setup_cgroups();
+int attach_process_to_cgroup_procs(pid_t pid);
 
 #endif

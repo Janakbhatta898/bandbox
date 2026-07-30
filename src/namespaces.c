@@ -1,5 +1,6 @@
 
 #include "namespaces.h"
+#include "cgroups.h"
 
 #include<sched.h>
 #include<stdlib.h>
@@ -29,6 +30,7 @@ int start_bandbox(int (*child_func)(void *), void *arg){
 		free(stack);
 		return -1;
 	}
+	attach_process_to_cgroup_procs(child_pid);
 
 	if(waitpid(child_pid, NULL, 0) == -1){
 		perror("waitpid");
