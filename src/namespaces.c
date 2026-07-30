@@ -7,12 +7,6 @@
 #include<sys/types.h>
 #include<stdio.h>
 
-static int child_func(void *arg){
-
-	return 0;
-}
-
-
 int start_bandbox(int (*child_func)(void *), void *arg){
 	char *stack = malloc(STACKSIZE);
 

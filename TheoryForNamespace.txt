@@ -150,3 +150,34 @@ arg – A generic pointer passed as an argument to child_func, allowing arbitrar
 Return Value
 
 Returns 0 on successful sandbox creation and execution, or -1 if an error occurs during sandbox initialization.
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+What is UTS?
+
+UTS stands for:
+
+UNIX Time-sharing System
+
+This name comes from the early UNIX operating system. Although the namespace is called "UTS", today it isolates two pieces of system identity:
+
+Hostname
+NIS (Network Information Service) domain name (rarely used today)
+
+For Bandbox, the important part is the hostname.
+
+What is a Hostname?
+
+A hostname is simply the operating system's name for a machine.
+
+For example, on your host system:
+
+hostname
+
+might output:
+
+DHIRAJSHRESTHA
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
