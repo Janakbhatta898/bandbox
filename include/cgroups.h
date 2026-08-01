@@ -4,6 +4,8 @@
 
 
 int setup_cgroups();
+int mkdir_cgroups();
+void max_pids();
 int attach_process_to_cgroup_procs(pid_t pid);
 
 #endif
