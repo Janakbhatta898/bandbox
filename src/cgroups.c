@@ -32,7 +32,7 @@ static int write_to_file(const char *path,const char *value){
     return 0;
 }
 void max_pids(){
-    write_to_file(cgroup_path"/pids.max","1\n");
+    write_to_file(cgroup_path"/pids.max","100\n");
    return;
 }
 int attach_process_to_cgroup_procs(pid_t pid) {

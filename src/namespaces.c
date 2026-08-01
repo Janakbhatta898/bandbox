@@ -21,7 +21,7 @@ int start_bandbox(int (*child_func)(void *), void *arg){
 	pid_t child_pid = clone(
 			child_func,
 			stack_top,
-			CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS | CLONE_NEWIPC | SIGCHLD,
+			CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS  | CLONE_NEWNET | CLONE_NEWIPC | SIGCHLD,
 			arg
 			);
 	
