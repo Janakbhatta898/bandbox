@@ -1,5 +1,7 @@
 #include "namespaces.h"
 #include "cgroups.h"
+#include "seccomp_filter.h"
+
 
 #include <sched.h>
 #include <stdlib.h>
@@ -67,6 +69,7 @@ int start_bandbox(int (*child_func)(void *), void *arg)
         CLONE_NEWUTS |
         CLONE_NEWIPC |
 		CLONE_NEWNET |
+        CLONE_NEWUSER |
         SIGCHLD,
         &targs);
 
