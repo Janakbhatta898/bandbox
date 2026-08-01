@@ -13,5 +13,7 @@ file(GLOB SOURCES "src/*.c")
 
 add_executable(bandbox ${SOURCES})
 
+#link required libraries
+target_link_libraries(bandbox PRIVATE seccomp)
 
 
