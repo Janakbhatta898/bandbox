@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/bandbox.dir/src/cgroups.c.o CMakeFiles/bandbox.dir/src/main.c.o CMakeFiles/bandbox.dir/src/namespaces.c.o CMakeFiles/bandbox.dir/src/seccomp.c.o -o bandbox  -lseccomp 
