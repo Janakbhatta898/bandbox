@@ -1,3 +1,0 @@
-/home/Himanshu/Pulchowk Campus/Fourth Semester/Operating Systems/Project/bandbox/build/CMakeFiles/bandbox.dir
-/home/Himanshu/Pulchowk Campus/Fourth Semester/Operating Systems/Project/bandbox/build/CMakeFiles/edit_cache.dir
-/home/Himanshu/Pulchowk Campus/Fourth Semester/Operating Systems/Project/bandbox/build/CMakeFiles/rebuild_cache.dir
