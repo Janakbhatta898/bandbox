@@ -9,3 +9,11 @@ it does not work.
 The main concept is whenever the child process is created you put that process pid to cgroup.procs because pids.max tracks the 
 cgroup.procs to know how many process are running.
 
+date: aug 2
+
+implemented the memory.max to 16 mb. we need set memory.swap.max to 0 so that whenever the maximum memory is occupied the system 
+does not allocate/swap the new memory part for the bandbox.
+
+the test code for memory execution is on file momory_test_code.txt . just copy and past it in terminal.
+
+cpu is limited to 10 percent use 

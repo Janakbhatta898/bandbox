@@ -35,7 +35,7 @@ This produces a `bandbox` binary inside the `build/` folder.
 Run it :
 
 ```bash
-sudo ./bandbox
+sudo ./bandbox /bin/bash 
 ```
 
 ## Project Structure

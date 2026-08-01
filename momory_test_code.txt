@@ -1,0 +1,6 @@
+python3 -c "
+data = bytearray()
+while True:
+    data.extend(bytes(1024 * 1024))  # grab 1MB at a time
+    print(f'Allocated {len(data) // (1024*1024)} MB')
+"

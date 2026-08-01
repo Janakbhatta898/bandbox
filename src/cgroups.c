@@ -36,13 +36,27 @@ static int write_to_file(const char *path,const char *value){
     fclose(fp);
     return 0;
 }
+void max_cpu(int percent){
+    char value[64];
+    long period = 100000; //100ms
+    long quota = (period * percent) / 100;
+    snprintf(value, sizeof(value), "%ld %ld\n", quota, period);
+    write_to_file(cgroup_path"/cpu.max", value);
+}
+void max_swap(){
+    write_to_file(cgroup_path"/memory.swap.max","0\n");
+    return;
+}
+void max_memory(){
+    write_to_file(cgroup_path"/memory.max","16777216\n");
+    return;
+}
 void max_pids(){
     write_to_file(cgroup_path"/pids.max","100\n");
-<<<<<<< HEAD
+
    return;
-=======
-   return;	
->>>>>>> origin/main
+
+
 }
 int attach_process_to_cgroup_procs(pid_t pid) {
    // 1. Format the integer PID into a string
@@ -60,6 +74,9 @@ int setup_cgroups(){
      mkdir_cgroups();   
 
     max_pids();
+    max_swap();
+    max_memory();
+    max_cpu(10);
 
    
     return 0;
