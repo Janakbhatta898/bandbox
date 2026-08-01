@@ -71,7 +71,11 @@ int main(int argc, char *argv[]){
 		printf("Usage: %s <program> [arguments...]\n", argv[0]);
 		return 1;
 	}
-	setup_cgroups();
+	if(setup_cgroups() == -1){
+		perror("setup_cgroups");
+		return 1;
+	}
+	fflush(stdout);
 
 
 

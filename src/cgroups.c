@@ -3,6 +3,7 @@
 #include<stdlib.h> 
 #include<sys/stat.h> //for mkdir
 #include<sys/types.h>
+#include<errno.h>
 
 #include "cgroups.h"
 
@@ -13,7 +14,11 @@
 
 int mkdir_cgroups(){
     if(mkdir(cgroup_path, 0755)==-1){
-        perror("cgroup for bandbox is already exists");
+	    if(errno == EEXIST){
+		    return 0;
+	    }
+	    perror("cgroup for bandbox is already exists");
+
         return -1;
     }
     return 0;
@@ -32,8 +37,8 @@ static int write_to_file(const char *path,const char *value){
     return 0;
 }
 void max_pids(){
-    write_to_file(cgroup_path"/pids.max","1\n");
-   return;
+    write_to_file(cgroup_path"/pids.max","100\n");
+   return;	
 }
 int attach_process_to_cgroup_procs(pid_t pid) {
    // 1. Format the integer PID into a string
