@@ -2,6 +2,7 @@
 #include "namespaces.h"
 #include "cgroups.h"
 
+
 #include<sched.h>
 #include<stdlib.h>
 #include<sys/wait.h>
@@ -19,11 +20,12 @@ int start_bandbox(int (*child_func)(void *), void *arg){
 	char *stack_top = stack + STACKSIZE;
 
 	pid_t child_pid = clone(
-			child_func,
-			stack_top,
-			CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS | CLONE_NEWIPC | SIGCHLD,
-			arg
-			);
+        child_func,
+        stack_top,
+        CLONE_NEWPID | CLONE_NEWNS | CLONE_NEWUTS | CLONE_NEWIPC |
+        CLONE_NEWUSER | CLONE_NEWNET | SIGCHLD,
+        arg
+        );
 	
 	if(child_pid == -1){
 		perror("clone");

@@ -1,5 +1,7 @@
 #include "namespaces.h"
 #include "cgroups.h"
+#include "seccomp_filter.h"
+
 #include<stdio.h>
 #include<unistd.h>
 #include<string.h>
@@ -44,6 +46,11 @@ int child_func(void *arg){
 		return -1;
 	}
 
+    if (apply_seccomp_filter() == -1){
+        perror("Failed to apply seccomp filter.");
+        return -1;
+    }
+
 	char **args = (char **)arg;
 	fflush(stdout);
 
@@ -53,6 +60,8 @@ int child_func(void *arg){
 	}
 	return 0;
 }
+
+
 int main(int argc, char *argv[]){
 	//the thing inside comment was for testing only if you want you can do too
 	/*char current_hostname[64];
